@@ -207,6 +207,10 @@ mixpanel.people.setPushId = function(pushId, onSuccess, onFail) {
   exec(onSuccess, onFail, 'Mixpanel', 'people_setPushId', [pushId]);
 };
 
+mixpanel.people.removeAllPushDeviceTokens = function(onSuccess, onFail) {
+  exec(onSuccess, onFail, 'Mixpanel', 'people_removeAllPushDeviceTokens', []);
+};
+
 mixpanel.people.trackCharge = function(amount, chargeProperties, onSuccess, onFail) {
   if (typeof amount !== 'number' || !isFinite(amount)) {
     return onFail(errors.invalid('amount', amount));

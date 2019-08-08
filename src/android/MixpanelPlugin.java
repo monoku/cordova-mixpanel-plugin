@@ -46,6 +46,7 @@ public class MixpanelPlugin extends CordovaPlugin {
         PEOPLE_DELETE_USER("people_deleteUser"),
         PEOPLE_INCREMENT("people_increment"),
         PEOPLE_SET_PUSH_ID("people_setPushId"),
+        PEOPLE_REMOVE_ALL_PUSH_DEVICE_TOKENS("people_removeAllPushDeviceTokens"),
         PEOPLE_SET("people_set"),
         PEOPLE_SET_ONCE("people_set_once"),
         PEOPLE_TRACK_CHARGE("people_track_charge"),
@@ -121,6 +122,8 @@ public class MixpanelPlugin extends CordovaPlugin {
                 return handlePeopleIncrement(args, cbCtx);
             case PEOPLE_SET_PUSH_ID:
                 return handlePeopleSetPushId(args, cbCtx);
+            case PEOPLE_REMOVE_ALL_PUSH_DEVICE_TOKENS:
+                return handlePeopleRemoveAllDeviceTokens(args, cbCtx);
             case PEOPLE_SET:
                 return handlePeopleSet(args, cbCtx);
             case PEOPLE_SET_ONCE:
@@ -331,6 +334,13 @@ public class MixpanelPlugin extends CordovaPlugin {
     private boolean handlePeopleSetPushId(JSONArray args, final CallbackContext cbCtx) {
         String pushId = args.optString(0);
         mixpanel.getPeople().setPushRegistrationId(pushId);
+        cbCtx.success();
+        return true;
+    }
+
+
+    private boolean handlePeopleRemoveAllDeviceTokens(JSONArray args, final CallbackContext cbCtx) {
+        mixpanel.getPeople().removeAllPushDeviceTokens();
         cbCtx.success();
         return true;
     }
