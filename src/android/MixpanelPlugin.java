@@ -340,7 +340,7 @@ public class MixpanelPlugin extends CordovaPlugin {
 
 
     private boolean handlePeopleRemoveAllDeviceTokens(JSONArray args, final CallbackContext cbCtx) {
-        mixpanel.getPeople().removeAllPushDeviceTokens();
+        mixpanel.getPeople().clearPushRegistrationId();
         cbCtx.success();
         return true;
     }
